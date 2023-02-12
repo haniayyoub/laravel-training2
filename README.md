@@ -94,13 +94,11 @@ Route::get('/welcome', function () {
 return 'welcome';
 });
 
-</pre>
-
 Route::get('/hello', function () {
-echo '<h1>Hello</h1>';
+echo '&lt;h1>Hello&lt;/h1>';
 });
 
-
+</pre>
 
 **Routes parameters**
 In Laravel, you can pass parameters to your routes to capture dynamic values in the URL. This allows you to create dynamic and flexible URLs that can be used to retrieve specific data based on the parameters provided.
@@ -164,9 +162,10 @@ Route::group(['prefix' => 'home'], function () {
 </pre>
 In home.blade add the following
 
+<pre>
  <h2 style="color:black; text-align: center" ><a href="{{ route('home.signup') }}"> Signup with route name</a></h2>
  <h2 style="color:black; text-align: center" ><a href="{{ url('home/signup') }}"> Signup with route url </a></h2>
-
+</pre>
 
 Note: The route method takes the name of the route, while the url method take the URI of the route
 Note: The **{{ }}** syntax in Laravel Blade is used to print a value or expression in a Blade template. **{{ $name}}** is equal to **<?php echo $name ?>**
