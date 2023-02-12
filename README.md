@@ -35,7 +35,13 @@ Note 4: Laravel has its own server for development so there is no need to put th
  -	now refresh the page 
  -	in route/web.php change the route URI to home 
 
- 
+## Part 3: Laravel MVC 
+Model-view-controller (MVC) is a software architectural pattern commonly used to develop web applications containing user interfaces. This pattern divides the application into three interconnected elements.
+* **Model** contains the business logic of the application. For example, the Online Store application product data and its functions.
+* **View** contains the application’s user interface. For example, a view to register products or users.
+* **Controller** acts as an interface between model and view elements. For example, a product controller collects information from a “create product” view and passes it to the product model to be stored in the database.
+
 ![Laravel MVC](/public/mvc.png)
 
-<img src="/public/mvc.png" width="400"/>
+
+
