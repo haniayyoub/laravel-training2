@@ -153,7 +153,7 @@ Route::group(['prefix' => 'home'], function () {
     })->name('home');
     Route::get('/account', function () {
         return view('account');
-    })->name('home.acount');
+    })->name('home.account');
     Route::get('/signup', function () {
         return view('signup');
     })->name('home.signup');
@@ -167,6 +167,115 @@ In home.blade add the following
  &lt;h2 style="color:black; text-align: center" >&lt;a href="{{ url('home/signup') }}"> Signup with route url </a></h2>
 </pre>
 
+
+Then in routes/web.php change the signup route URI to sign-up and check which one of these links is still working
+
 Note: The route method takes the name of the route, while the url method take the URI of the route
 Note: The **{{ }}** syntax in Laravel Blade is used to print a value or expression in a Blade template. **{{ $name}}** is equal to **<?php echo $name ?>**
  
+## Part 5: Laravel Controllers
+Controllers are classes that help manage HTTP requests and provide responses to these requests. Controllers in Laravel are used to manage the flow of data between the model (which handles database logic) and the view (which displays the user interface). When a user makes an HTTP request, Laravel maps the request to a specific controller method and the method is executed to handle the request and return a response.
+To create controller use command: php artisan make:controller HomeController
+The controller naming convention is pascal case where the word Controller is added at the end of the name
+<pre>
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    //
+}
+
+</pre>
+Note that any created controller should extends the Controller class 
+
+Add methods to return views:
+<pre>
+ public function index()
+    {
+        return view('home');
+    }
+
+    public function signup()
+    {
+        return view('signup');
+    }
+    public function account()
+    {
+        return view('account');
+    }
+
+    public function hello($name, $lastname=" ")
+    {
+        return "Hello " . $name . " " . $lastname;
+    }
+
+</pre>
+Now we should use these methods in the web.php
+At the top of the file add:
+<pre>
+use App\Http\Controllers\HomeController;
+</pre>
+in routes replace the anonymous functions with controller methods 
+<pre>
+[HomeController::class,'methodName']
+
+Route::get('hello/{name}/{fname?}', [HomeController::class,'hello']);
+
+Route::group(['prefix' => 'home'], function () {
+    Route::get('/', [HomeController::class,'home'])->name('home');
+    Route::get('/account', [HomeController::class,'account'])->name('home.account');
+    Route::get('/sign-up', [HomeController::class,'signup'])->name('home.signup');
+});
+
+</pre>
+
+Let’s add a  route and method to handle the form data 
+<pre>
+public function create(Request $request)
+    {
+        return redirect(route('home.account'));
+    }
+
+</pre>
+Add the following route inside the home group 
+<pre>
+Route::post('/sign-up', [HomeController::class,'create'])->name('home.create');
+</pre>
+
+In signup blade change the action to this post route 
+<pre>
+        <form action="{{ route('home.create') }}" method="post">
+</pre>
+Now try to submit the form: you will receive the following error **419 PAGE EXPIRED**
+
+Why???
+To solve add @csrf inside the form 
+<pre>
+ <form action="{{ route('home.create') }}" method="post">
+            @csrf
+</pre>
+
+We need to make sure that the data was entered correctly so we need to access the request data 
+<pre>
+ public function create(Request $request)
+    {
+        $username = $request->username;
+        $email = $request->email;
+
+        return redirect(route('home.account'))->with(compact('username', 'email'));
+    }
+</pre>
+Modify the account body
+<pre>
+  &lt;body>
+         &lt;h1 style="text-align: center">
+            Congratulations you have created your account with the following information
+             &lt;p>Username: {{ session('username') }}</p>
+             &lt;p>Email: {{ session('email') }}</p>
+        </h1>
+    </body>
+</pre>
