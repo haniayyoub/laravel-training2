@@ -175,10 +175,10 @@ Note: The **{{ }}** syntax in Laravel Blade is used to print a value or expressi
  
 ## Part 5: Laravel Controllers
 Controllers are classes that help manage HTTP requests and provide responses to these requests. Controllers in Laravel are used to manage the flow of data between the model (which handles database logic) and the view (which displays the user interface). When a user makes an HTTP request, Laravel maps the request to a specific controller method and the method is executed to handle the request and return a response.
-To create controller use command: php artisan make:controller HomeController
+To create controller use command: **php artisan make:controller HomeController**
 The controller naming convention is pascal case where the word Controller is added at the end of the name
 <pre>
-<?php
+$lt;?php
 
 namespace App\Http\Controllers;
 
