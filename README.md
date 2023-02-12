@@ -27,14 +27,37 @@ Note 4: Laravel has its own server for development so there is no need to put th
  -	go to GitHub and this time choose clone repo and clone the Laravel-training repo
  -	open in VSCode note that .env file and vendor folder are no longer existing 
  -	in terminal run ( composer install ) now the vendor folder appears 
+ -  for .env file make a copy form .env.example file and rename it to .env 
  -	run command: php artisan key:generate
  -	run command: php artisan serve
  -	create a copy of resources/views/welcome.blade.php and rename it to mypage
  -	modify the page content 
  -	go to routes/web.php change the view name to mypage 
- -	now refresh the page 
- -	in route/web.php change the route URI to home 
+ <pre>
+ Route::get('/', function () {
+    return view('home');
+}); 
 
+To 
+
+Route::get('/', function () {
+    return view('mypage');
+});
+</pre>
+ -	now refresh the page 
+ -	in route/web.php change the route URI to mypage 
+
+<pre>
+Route::get('/', function () {
+    return view('mypage');
+});
+
+To 
+
+Route::get('/mypage', function () {
+    return view('mypage');
+});
+</pre>
 ## Part 3: Laravel MVC 
 Model-view-controller (MVC) is a software architectural pattern commonly used to develop web applications containing user interfaces. This pattern divides the application into three interconnected elements.
 * **Model** contains the business logic of the application. For example, the Online Store application product data and its functions.
