@@ -36,4 +36,4 @@ Note 4: Laravel has its own server for development so there is no need to put th
  -	in route/web.php change the route URI to home 
 
  
-![Laravel MVC](mvc.jpg)
+![Laravel MVC](public/mvc.jpg)
