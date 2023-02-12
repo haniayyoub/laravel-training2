@@ -178,7 +178,7 @@ Controllers are classes that help manage HTTP requests and provide responses to 
 To create controller use command: **php artisan make:controller HomeController**
 The controller naming convention is pascal case where the word Controller is added at the end of the name
 <pre>
-$lt;?php
+&lt;?php
 
 namespace App\Http\Controllers;
 
@@ -248,14 +248,14 @@ Route::post('/sign-up', [HomeController::class,'create'])->name('home.create');
 
 In signup blade change the action to this post route 
 <pre>
-        <form action="{{ route('home.create') }}" method="post">
+        &lt;form action="{{ route('home.create') }}" method="post">
 </pre>
 Now try to submit the form: you will receive the following error **419 PAGE EXPIRED**
 
 Why???
 To solve add @csrf inside the form 
 <pre>
- <form action="{{ route('home.create') }}" method="post">
+ &lt;form action="{{ route('home.create') }}" method="post">
             @csrf
 </pre>
 
@@ -274,8 +274,8 @@ Modify the account body
   &lt;body>
          &lt;h1 style="text-align: center">
             Congratulations you have created your account with the following information
-             &lt;p>Username: {{ session('username') }}</p>
-             &lt;p>Email: {{ session('email') }}</p>
-        </h1>
-    </body>
+             &lt;p>Username: {{ session('username') }}&lt;/p>
+             &lt;p>Email: {{ session('email') }}&lt;/p>
+       &lt;/h1>
+    &lt;/body>
 </pre>
