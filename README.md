@@ -66,5 +66,106 @@ Model-view-controller (MVC) is a software architectural pattern commonly used to
 
 ![Laravel MVC](/public/mvc.png)
 
+## Part 4: Laravel Routes
+In Laravel, the Route class is used to define the routes for a web application. It provides a simple and convenient way to define URLs, HTTP methods, and controllers or closure functions that should handle the incoming requests.
+If you open the **routes/web.php** file you will find the following code:
 
+<pre>
+Route::get('/', function () {
+    return view('welcome');
+});
+</pre>
 
+This example creates a route that matches the root URL of the application and returns a view named "welcome". The get method is used to specify that the route should only match GET requests.
+Laravel also provides several other methods on the Route class, such as post, put, patch, delete, options, and any, that you can use to define routes that match different HTTP methods
+<pre>
+Route::get();
+Route::post();
+Route::patch();
+Route::put();
+Route::delete();
+Route::any();
+
+</pre>
+
+Try:
+<pre>
+Route::get('/welcome', function () {
+return 'welcome';
+});
+
+Route::get('/hello', function () {
+echo '<h1>Hello</h1>';
+});
+
+</pre>
+
+**Routes parameters**
+In Laravel, you can pass parameters to your routes to capture dynamic values in the URL. This allows you to create dynamic and flexible URLs that can be used to retrieve specific data based on the parameters provided.
+
+<pre>
+Route::get( 'hello/{name}', function ($name){
+echo "Hello " . $name;
+});
+
+Route::get( 'hello/{name}/{lastname?}', function ($name, $lname = " "){
+echo "Hello " . $name . " " . $lname ;
+});
+
+Route::get( 'hello/{name}/{fname?}', function ($x, $y="test"){
+            echo "Hello " . $x . " " . $y;
+            });
+
+</pre>
+
+**Note**: the ? means optional parameter
+
+**Grouping routes**
+Grouping routes in Laravel allows you to organize and structure your routes in a more meaningful and efficient way. By grouping routes, you can apply common behavior or configurations to multiple routes at once, which can help reduce code duplication and improve the maintainability of your application.
+
+<pre> 
+Route::group(['prefix'=>'home'], function()
+{
+Route::get('/', function () {
+    return view('home');
+});
+Route::get('/account', function () {
+    return view('account');
+});
+Route::get('/signup',function () {
+    return view('signup');
+});
+});
+
+</pre>
+
+**Named routes**
+Naming routes in Laravel is useful for several reasons:
+
+- Improved readability: By giving routes descriptive names, it makes your code more readable and understandable, especially for developers who may be unfamiliar with your codebase.
+- Ease of maintenance: Named routes make it easier to update your application if you need to change the URL structure. Instead of searching through your code for hardcoded URLs, you can update the route definition in one place, and the change will be reflected throughout your application.
+- URL generation: Named routes allow you to generate URLs programmatically, without having to hardcode them in your application. For example, you can generate a URL to a named route in your Blade templates or in your controllers using the route helper function. This can make your application more flexible and resilient to changes.
+
+<pre>
+Route::group(['prefix' => 'home'], function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+    Route::get('/account', function () {
+        return view('account');
+    })->name('home.acount');
+    Route::get('/signup', function () {
+        return view('signup');
+    })->name('home.signup');
+});
+
+</pre>
+In home.blade add the following
+<pre>
+ <h2 style="color:black; text-align: center" ><a href="{{ route('home.signup') }}"> Signup with route name</a></h2>
+ <h2 style="color:black; text-align: center" ><a href="{{ url('home/signup') }}"> Signup with route url </a></h2>
+</pre>
+
+Note: The route method takes the name of the route, while the url method take the URI of the route
+Note: The **{{ }}** syntax in Laravel Blade is used to print a value or expression in a Blade template. **{{ $name}}** is equal to **<?php echo $name ?>**
+ 
