@@ -163,8 +163,8 @@ Route::group(['prefix' => 'home'], function () {
 In home.blade add the following
 
 <pre>
- <h2 style="color:black; text-align: center" ><a href="{{ route('home.signup') }}"> Signup with route name</a></h2>
- <h2 style="color:black; text-align: center" ><a href="{{ url('home/signup') }}"> Signup with route url </a></h2>
+ &lt;h2 style="color:black; text-align: center" >&lt;a href="{{ route('home.signup') }}"> Signup with route name</a></h2>
+ &lt;h2 style="color:black; text-align: center" >&lt;a href="{{ url('home/signup') }}"> Signup with route url </a></h2>
 </pre>
 
 Note: The route method takes the name of the route, while the url method take the URI of the route
