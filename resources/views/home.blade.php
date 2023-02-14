@@ -13,7 +13,7 @@
               background-repeat: no-repeat;
             }
           </style>
-           <h2 style="color:black; text-align: center" ><a href="{{ route('home.signup') }}"> Signup with route name</a></h2>
+           <h2 style="color:black; text-align: center" ><a href="{{ route('user.signup') }}"> Signup with route name</a></h2>
  <h2 style="color:black; text-align: center" ><a href="{{ route('home.account') }}"> Signup with route url </a></h2>
 
 

@@ -56,7 +56,7 @@
         <h1 style="text-align: center">
             Please Signup to access full features
         </h1>
-        <form action="{{ route('home.create') }}" method="post">
+        <form action="{{ route('user.create') }}" method="post">
           @csrf
           <label for="username">Username:</label>
           <input type="text" id="username" name="username" required>

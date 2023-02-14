@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -24,12 +25,12 @@ Route::get('/welcome', function () {
     Route::get( 'hello/{name}/{fname?}', function ($x, $y="test"){
         echo "Hello " . $x . " " . $y;
         });
-        Route::group(['prefix'=>'home'], function()
+        Route::group(['prefix'=>'user'], function()
         {
-        Route::get('/',  [HomeController::class,'index'])->name('home');
-        Route::get('/account', [HomeController::class,'account'])->name('home.account');
-        Route::get('/signup',[HomeController::class,'signup'])->name('home.signup');
-        Route::post('/signup',[HomeController::class,'create'])->name('home.create');
+        Route::get('/',  [UserController::class,'index'])->name('user');
+        Route::get('/account', [UserController::class,'account'])->name('user.account');
+        Route::get('/signup',[UserController::class,'create'])->name('user.signup');
+        Route::post('/signup',[UserController::class,'store'])->name('user.create');
         });
 
        
