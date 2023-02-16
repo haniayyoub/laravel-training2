@@ -47,17 +47,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+				<tr>
+				@foreach($users as $user)
+				</td>
+				<td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
 						</td>
-						<td>Fran Wilson</td>
-						<td>franwilson@mail.com</td>
-						<td>C/ Araquil, 67, Madrid, Spain</td>
-						<td>(204) 619-5731</td>
+						<td>{{ $user->name}}</td>
+						<td>{{ $user->email}}</td>
+						<td>{{ $user->username}}</td>
+						<td>{{ $user->phone}}</td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+						<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
+				@endforeach
+						
+						
+
+							
 
 				</tbody>
 			</table>
