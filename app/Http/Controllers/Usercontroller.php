@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class Usercontroller extends Controller
 {
@@ -38,6 +39,13 @@ class Usercontroller extends Controller
     {
         $username=$request->username;
         $email=$request->email;
+        $password=$request->password;
+        $user=new User;
+        $user->name= $username;
+        $user->email= $email;
+        $user->password= $password;
+        user->save();
+
         return 'account creted with username:'.$username.' and email:'.$email;
     }
 
